@@ -1,0 +1,9 @@
+Changes: 
+* created a new module, 'harvester' which contains the behavior of harvestor creeps
+* Renamed script.js to main.js
+ 
+
+main		- no worky
+harvester	- no worky
+ 
+
