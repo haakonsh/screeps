@@ -6,32 +6,31 @@
  * var mod = require('harvester');
  * mod.thing == 'a thing'; // true
  */
-import{ isEven, isOdd} from "util.math"
+var isEven = require('util.math');
 
 var _ = require('lodash');
-var spawn = require('spawn');
 
 var constructExtension = {
-    run: function (construct)
+    run: function ()
     {
         for (var i in Game.spawns)
         {
-        //TODO create extension sites in a checker board pattern around spawns in +2 linear distance.
-        //TODO Debug algoritm below.
-        for(var x  == -3 ; x <= 3 ;x++)
-        {
-            for (var y == -3 ; y <= 3 ;y++)
+            //TODO create extension sites in a checker board pattern around spawns in +2 linear distance.
+            //TODO Debug algoritm below.
+            for (var x = -3; x <= 3; x++)
             {
-                if((isEven(x) && isEven(y)) || (isOdd(x) && isOdd(y))
+                for (var y = -3; y <= 3; y++)
                 {
-                var target = Game.spawns[i].pos;
-                target.x +=  x;
-                target.y +=  y;
-                Game.Room.createConstructionSite(target.pos, STRUCTURE_EXTENSION);
+                    if ((isEven.run(x) && isEven.run(y)) || !(isEven.run(x) && isEven.run(y)))
+                    {
+                        var target = Game.spawns[i].pos;
+                        target.x = target.x + x;
+                        target.y = target.y + y;
+                        Game.room.createConstructionSite(target, STRUCTURE_EXTENSION);
+                    }
                 }
             }
         }
     }
 };
-
 module.exports = constructExtension;
