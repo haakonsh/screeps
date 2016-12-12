@@ -1,9 +1,5 @@
 Changes: 
-* created a new module, 'harvester' which contains the behavior of harvestor creeps
-* Renamed script.js to main.js
- 
+Made a lot of them! 
 
-main		- no worky
-harvester	- no worky
- 
-
+Status:
+* Creep spawning seems to work
