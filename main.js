@@ -1,7 +1,10 @@
 var roleHarvester = require('role.harvester');
 var roleUpgrader = require('role.upgrader');
 var roleBuilder = require('role.builder');
-var spawnCreep = require('spawn');
+//var spawnCreep = require('spawn');
+var spawnHarvester = require('spawn').spawnHarvester;
+var spawnUpgrader = require('spawn').spawnUpgrader;
+var spawnBuilder = require('spawn').spawnBuilder;
 
 module.exports.loop = function ()
 {
@@ -15,7 +18,10 @@ module.exports.loop = function ()
     }
 
     var spawn = Game.spawns;
-    spawnCreep.run(spawn);
+    //spawnCreep.run(spawn);
+    spawnHarvester.run(spawn);
+    spawnUpgrader.run(spawn);
+    spawnBuilder.run(spawn);
 
     for (var name in Game.creeps)
     {
