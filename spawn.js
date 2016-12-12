@@ -84,7 +84,7 @@ var spawnCreep = {
             }
             if (spawn.canCreateCreep([WORK, CARRY, MOVE], undefined) == OK)
             {
-                let newName = spawn.createCreep([WORK, CARRY, MOVE], undefined,
+                let newName = spawn.createCreep([WORK, WORK, CARRY, MOVE], undefined,
                 {
                     role: 'builder',
                     working: false
