@@ -1,5 +1,0 @@
-Changes: 
-Made a lot of them! 
-
-Status:
-* Creep spawning seems to work
