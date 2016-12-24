@@ -1,8 +1,10 @@
-var roleUpgrader = require('role.upgrader');
+var roleUpgrader        = require('role.upgrader');
+var possibleSources     = Game.room.find(FIND_SOURCES);
+
 var roleHarvester = {
     run: function (creep)
     {
-
+        var miners = _.filter(Game.creeps, (creep) => creep.memory.role == 'miner');
 
         if (creep.carry.energy == 0)
         {
@@ -30,7 +32,9 @@ var roleHarvester = {
             {
                 creep.moveTo(source);
             }
-
+            else if(miners.length == possibleSources){
+                creep.memory.role == 'hauler';
+            }
             //Evnt hvis miners == antall energy spawns, convert to hauler()
         }
         else
@@ -54,11 +58,6 @@ var roleHarvester = {
                 creep.say("Upgrading")
                 roleUpgrader.run(creep);
             }
-            else
-            {
-
-            }
-
         }
     }
 };

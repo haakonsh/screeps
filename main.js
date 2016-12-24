@@ -10,6 +10,7 @@ var buildDNA = require('utility.buildDNA');
 var tower = require('tower');
 var spawnCreep = require('creep');
 var constructRoad = require('roadHeatmap')
+var spawnCreeps = require('spawn')
 
 require('prototype.spawn')();
 require('prototype.roomAutoBuild')();
@@ -23,19 +24,12 @@ profiler.enable();
 module.exports.loop = function () {
     profiler.wrap(function () {
         // Main.js logic should go here.
-        for (spawn in Game.spawns) {
+        for (var spawn in Game.spawns) {
             if (Game.spawns[spawn].room.controller.level > Memory.controllerLevel) {
                 Game.spawns[spawn].room.roomAutoBuild(Game.spawns[spawn].room, 20);
                 Memory.controllerLevel++;
             }
-            spawnCreep.clearMemory();
-            spawnCreep.harvester(spawn);
-            spawnCreep.upgrader(spawn);
-            spawnCreep.builder(spawn);
-            spawnCreep.repairer(spawn);
-            spawnCreep.hauler(spawn);
-            spawnCreep.miner(spawn);
-            spawnCreep.bigUpgrader(spawn);
+            spawnCreeps(spawn);
         }
 
         Memory.ticks++;
@@ -47,7 +41,7 @@ module.exports.loop = function () {
         tower.defend();
         for (var name in Game.creeps) {
             var creep = Game.creeps[name];
-            Memory.MapUsage[creep.pos.y][creep.pos.x]++;
+            Memory.MapUsage[creep.pos.y][creep.pos.x]++; // heap map
             if (creep.memory.role == 'harvester') {
                 roleHarvester.run(creep);
             }

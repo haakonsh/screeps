@@ -19,28 +19,30 @@ var roleBuilder = {
                 }
             }else{
                 roleUpgrader.run(creep);
+                return;
             }
         }
-        else {
-            var nearestContainer = creep.pos.findClosestByRange(FIND_STRUCTURES, {filter: {structureType: STRUCTURE_CONTAINER}});
+        else {//TODO bug if closest container is empty
+            var nearestContainer = creep.pos.findClosestByRange(FIND_STRUCTURES, {filter: (s) => {return (s.structureType == STRUCTURE_CONTAINER && s.store[RESOURCE_ENERGY] >= 150)}});
+
             if(nearestContainer != null){
-                if(creep.withdraw(nearestContainer, "energy", creep.carryCapacity) == "-6"){
-                    creep.moveTo(creep.room.controller)
-                }
                 if (creep.withdraw(nearestContainer, "energy", creep.carryCapacity) == ERR_NOT_IN_RANGE) {
                     creep.moveTo(nearestContainer);
                 }
-            }else{
+                if(creep.withdraw(nearestContainer, "energy", creep.carryCapacity) == "-6"){
+                creep.moveTo(creep.room.controller)
+                }
+            }
+            else{
                 creep.say('mining instead')
                 var source = creep.pos.findClosestByPath(FIND_SOURCES_ACTIVE);
                 if (creep.harvest(source) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(source);
+                creep.moveTo(source);
                 }
             }
 
         }
     },
-
 };
 
 module.exports = roleBuilder;

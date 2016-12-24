@@ -2,7 +2,7 @@ var utilityMemorySetUp = {
     setup: function (Memory) {
         console.log("Setting Memory");
         Memory.worker = {
-            upgraders: 10,
+            upgraders: 4,
             haulers: 4,
             repairers: 2,
             harvesters: 2,

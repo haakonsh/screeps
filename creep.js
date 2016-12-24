@@ -75,7 +75,7 @@ var spawnCreep = {
 
         }
     },
-    repairer: function (spawn)
+    repairman: function (spawn)
     {
         var repairers = _.filter(Game.creeps, (creep) => creep.memory.role == 'repairman');
         if ((Game.spawns[spawn].room.find(FIND_STRUCTURES,
@@ -85,7 +85,7 @@ var spawnCreep = {
         {
             if (!Memory.notified)
             {
-                console.log("need more repairmens " + repairers.length + "/" + Memory.worker.repairers);
+                console.log("need more repairmen " + repairers.length + "/" + Memory.worker.repairers);
                 Memory.notified = true;
             }
             var newName = Game.spawns[spawn].createCreep([WORK, CARRY, MOVE], undefined,
@@ -95,9 +95,9 @@ var spawnCreep = {
             });
             if (newName != "-6" && newName != "-4")
             {
-                newName = newName += " repairer";
+                newName = newName += " repairman";
                 Memory.notified = false;
-                console.log("Spawning repairer: " + newName)
+                console.log("Spawning repairman: " + newName)
             }
 
         }
@@ -128,12 +128,12 @@ var spawnCreep = {
     },
     miner: function (spawn)
     {
-        var miner = _.filter(Game.creeps, (creep) => creep.memory.role == 'miner');
-        if (miner.length < Memory.worker.miners)
+        var miners = _.filter(Game.creeps, (creep) => creep.memory.role == 'miner');
+        if (miners.length < Memory.worker.miners)
         {
             if (!Memory.notified)
             {
-                console.log("need more miners " + miner.length + "/" + Memory.worker.miners);
+                console.log("need more miners " + miners.length + "/" + Memory.worker.miners);
                 Memory.notified = true;
             }
             if (Game.spawns.Spawn1.room.energyAvailable > 200)

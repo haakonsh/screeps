@@ -26,9 +26,9 @@ var constructRoad = {
             // MapUsage[0].pos = 0; // {0,0};
             // MapUsage[0].value = 0;
 
-            for (x = 0; x <= 49; x++)
+            for (var x = 0; x <= 49; x++)
             {
-                for (y = 0; y <= 49; x++)
+                for (var y = 0; y <= 49; x++)
                 {
                     MapUsage.push(
                     {
